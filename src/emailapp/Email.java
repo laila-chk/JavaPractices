@@ -15,7 +15,9 @@ public class Email {
   public Email(String firstName, String lastName){
     this.firstName = firstName;
     this.lastName = lastName;
-    System.out.println("Email created mr: " + firstName + " " + lastName);
+    setDepartement();
+    generatePwd(12);
+    System.out.println("Email created Mr: " + firstName + " " + lastName);
   } 
   //ask for departement
   public void setDepartement() {
@@ -53,13 +55,21 @@ public class Email {
     }
     else
     System.out.println("departement was set To: " + this.departement);
+
   }
 
-  // //Generate random pwd
-  public void generatePwd() {
+  // //Generate random pwd ans set it.
+  public void generatePwd(int len) {
+    char[] pwd  = new char[len];
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+    int randomIndex;
 
-      long currentTimeInSeconds = Instant.now().getEpochSecond();
-        System.out.println("Current Time in Seconds: " + currentTimeInSeconds);
+    for (int i = 0; i < len; i++){
+      randomIndex = (int)(Math.random() * chars.length());
+      pwd[i] = chars.charAt(randomIndex);
+    }
+    this.password = new String(pwd);
+
   }
 
   //set mailboxCapacity
