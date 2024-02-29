@@ -1,6 +1,5 @@
 package emailapp;
 import java.util.Scanner;
-import java.time.Instant;
 
 
 public class Email {
@@ -8,6 +7,7 @@ public class Email {
   private String lastName;
   private String password;
   private String departement;
+  private String email;
   private int mailboxCapacity;
   private String alternateEmail;
 
@@ -16,8 +16,10 @@ public class Email {
     this.firstName = firstName;
     this.lastName = lastName;
     setDepartement();
-    generatePwd(12);
+    this.email = firstName + "." + lastName + "@" + departement + ".company.com";
     System.out.println("Email created Mr: " + firstName + " " + lastName);
+    System.out.println("it is: " + email );
+    generatePwd(15);
   } 
   //ask for departement
   public void setDepartement() {
@@ -51,29 +53,24 @@ public class Email {
       System.out.println("Please Choose a departement number!");
     }
     if (this.departement == null || this.departement.isEmpty()){
-      System.out.println("departement was NOT set!");
+      System.out.println("departement was NOT set! try again..");
+      System.exit(0);
     }
-    else
-    System.out.println("departement was set To: " + this.departement);
-
   }
 
-  // //Generate random pwd ans set it.
+  // //Generate random pwd
   public void generatePwd(int len) {
-    char[] pwd  = new char[len];
-    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
-    int randomIndex;
 
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_+-=";
+    char[] pwd = new char[len];
+    int rand;
     for (int i = 0; i < len; i++){
-      randomIndex = (int)(Math.random() * chars.length());
-      pwd[i] = chars.charAt(randomIndex);
+      rand =(int)(Math.random() * chars.length()); 
+      pwd[i] = chars.charAt(rand);
     }
-    this.password = new String(pwd);
+   System.out.println("your password is: " + pwd); 
+   System.out.println("please remember it."); 
 
   }
-
-  //set mailboxCapacity
-
-  //change the pwd
 
 }
